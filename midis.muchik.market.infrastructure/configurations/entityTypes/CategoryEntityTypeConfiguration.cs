@@ -10,7 +10,9 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes
         {
             builder.ToTable("category");
 
-            builder.Property(e => e.Id).HasColumnName("id");
+            builder.Property(e => e.Id)
+                .HasColumnType("varchar(250)")
+                .HasColumnName("id");
 
             builder.HasKey(c => c.Id);
 
@@ -19,11 +21,11 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes
                 .HasColumnName("created_at");
 
             builder.Property(e => e.Name)
-                .HasMaxLength(150)
+                .HasColumnType("varchar(150)")
                 .HasColumnName("name");
 
             builder.Property(e => e.Description)
-                .HasMaxLength(1000)
+                .HasColumnType("varchar(1000)")
                 .HasColumnName("description");
         }
     }

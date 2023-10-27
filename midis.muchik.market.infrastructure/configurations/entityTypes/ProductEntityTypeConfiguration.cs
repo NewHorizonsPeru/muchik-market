@@ -8,13 +8,6 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            /*
-             *  
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public string CategoryId { get; set; } = null!;
-        public string BrandId { get; set; } = null!;
-             */
-
             builder.ToTable("product");
             
             builder.Property(e => e.Id)

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\midis.muchik.market.application\midis.muchik.market.application.csproj" />
+    <ProjectReference Include="..\midis.muchik.market.infrastructure\midis.muchik.market.infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
