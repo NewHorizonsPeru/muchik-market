@@ -26,6 +26,8 @@ builder.Services.AddDbContext<MuchikContext>(opt =>
 
 builder.Services.AddTransient<ICommonService, CommonService>();
 builder.Services.AddTransient<IBrandRepository, BrandRepository>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<MuchikContext>();
 
 var app = builder.Build();

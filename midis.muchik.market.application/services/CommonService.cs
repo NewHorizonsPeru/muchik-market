@@ -10,19 +10,38 @@ namespace midis.muchik.market.application.services
     {
         private readonly IMapper _mapper;
         private readonly IBrandRepository _brandRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductRepository _productRepository;
 
-        public CommonService(IMapper mapper, IBrandRepository brandRepository)
+        public CommonService(
+            IMapper mapper, 
+            IBrandRepository brandRepository, 
+            ICategoryRepository categoryRepository, 
+            IProductRepository productRepository
+            )
         {
             _mapper = mapper;
             _brandRepository = brandRepository;
+            _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
         }
 
         public IEnumerable<BrandDto> GetBrands()
         {
-            var bransEntity = _brandRepository.List();
-            return _mapper.Map<IEnumerable<BrandDto>>(bransEntity);
+            var brandsEntity = _brandRepository.List();
+            return _mapper.Map<IEnumerable<BrandDto>>(brandsEntity);
         }
 
-        //public IEnumerable<CategoryDto> GetCategories()
+        public IEnumerable<CategoryDto> GetCategories()
+        {
+            var categoriesEntity = _categoryRepository.List();
+            return _mapper.Map<IEnumerable<CategoryDto>>(categoriesEntity);
+        }
+
+        public IEnumerable<ProductDto> GetProducts()
+        {
+            var productsEntity = _productRepository.GetProducts();
+            return _mapper.Map<IEnumerable<ProductDto>>(productsEntity);
+        }
     }
 }

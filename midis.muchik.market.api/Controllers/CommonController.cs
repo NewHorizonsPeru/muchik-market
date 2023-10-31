@@ -19,5 +19,17 @@ namespace midis.muchik.market.api.Controllers
         {
             return Ok(_commonService.GetBrands());
         }
+
+        [HttpGet("getCategories")]
+        public IActionResult GetCategories()
+        {
+            return Ok(_commonService.GetCategories());
+        }
+
+        [HttpGet("getProducts")]
+        public IActionResult GetProducts()
+        {
+            return Ok(_commonService.GetProducts());
+        }
     }
 }
