@@ -22,5 +22,7 @@ namespace midis.muchik.market.application.services
             var bransEntity = _brandRepository.List();
             return _mapper.Map<IEnumerable<BrandDto>>(bransEntity);
         }
+
+        //public IEnumerable<CategoryDto> GetCategories()
     }
 }

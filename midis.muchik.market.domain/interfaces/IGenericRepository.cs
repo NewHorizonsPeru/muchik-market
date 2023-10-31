@@ -18,6 +18,6 @@ namespace midis.muchik.market.domain.interfaces
         void Update(T entityToUpdate, Func<T, string> getKey);
         void Unmark(T entity);
         IQueryable<T> Queryable();
-        void Save();
+        bool Save();
     }
 }

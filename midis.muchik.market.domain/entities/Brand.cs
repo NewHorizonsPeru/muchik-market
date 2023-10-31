@@ -1,6 +1,6 @@
 ﻿namespace midis.muchik.market.domain.entities
 {
-    public class Brand
+    public partial class Brand
     {
         public Brand() 
         { 
