@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using midis.muchik.market.domain.interfaces;
 using midis.muchik.market.infrastructure.context;
 using System.Linq.Expressions;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class GenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T>  where T : class
     {
         protected readonly MuchikContext _context;
 

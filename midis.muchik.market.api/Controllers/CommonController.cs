@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using midis.muchik.market.infrastructure.context;
+using midis.muchik.market.application.interfaces;
 
 namespace midis.muchik.market.api.Controllers
 {
@@ -7,17 +7,17 @@ namespace midis.muchik.market.api.Controllers
     [ApiController]
     public class CommonController : ControllerBase
     {
-        private readonly MuchikContext _context;
+        private readonly ICommonService _commonService;
 
-        public CommonController(MuchikContext context)
+        public CommonController(ICommonService commonService)
         {
-            _context = context;
+            _commonService = commonService;
         }
 
-        [HttpGet("getProducts")]
-        public IActionResult GetProducts()
+        [HttpGet("getBrands")]
+        public IActionResult GetBrands() 
         {
-            return Ok(_context.Brands);
+            return Ok(_commonService.GetBrands());
         }
     }
 }

@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using midis.muchik.market.application.interfaces;
+using midis.muchik.market.application.mappings;
+using midis.muchik.market.application.services;
+using midis.muchik.market.domain.interfaces;
 using midis.muchik.market.infrastructure.context;
+using midis.muchik.market.infrastructure.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +15,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(EntityToDtoProfile));
+
 //DBContext SQL Server
 builder.Services.AddDbContext<MuchikContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("MuchikConnection"));
 });
 
+builder.Services.AddTransient<ICommonService, CommonService>();
+builder.Services.AddTransient<IBrandRepository, BrandRepository>();
 builder.Services.AddTransient<MuchikContext>();
 
 var app = builder.Build();
