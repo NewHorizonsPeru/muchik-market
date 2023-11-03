@@ -13,15 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Cross-Cutting", "5. Cross-Cutting", "{002AF6D7-B4C6-4891-8CE7-AEF82CC8FC32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midis.muchik.market.domain", "midis.muchik.market.domain\midis.muchik.market.domain.csproj", "{ADF818BE-3751-457B-94AF-EBB51D6B9EE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "midis.muchik.market.domain", "midis.muchik.market.domain\midis.muchik.market.domain.csproj", "{ADF818BE-3751-457B-94AF-EBB51D6B9EE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midis.muchik.market.infrastructure", "midis.muchik.market.infrastructure\midis.muchik.market.infrastructure.csproj", "{90867315-4CB9-4CB5-B539-3A4516F72517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "midis.muchik.market.infrastructure", "midis.muchik.market.infrastructure\midis.muchik.market.infrastructure.csproj", "{90867315-4CB9-4CB5-B539-3A4516F72517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midis.muchik.market.application", "midis.muchik.market.application\midis.muchik.market.application.csproj", "{8E60B91C-342F-46CB-9CD1-B2E93FE88673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "midis.muchik.market.application", "midis.muchik.market.application\midis.muchik.market.application.csproj", "{8E60B91C-342F-46CB-9CD1-B2E93FE88673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midis.muchik.market.crosscutting", "midis.muchik.market.cross-cutting\midis.muchik.market.crosscutting.csproj", "{776D42F3-F41D-4F52-81AE-F68EDE37F428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "midis.muchik.market.crosscutting", "midis.muchik.market.cross-cutting\midis.muchik.market.crosscutting.csproj", "{776D42F3-F41D-4F52-81AE-F68EDE37F428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midis.muchik.market.api", "midis.muchik.market.api\midis.muchik.market.api.csproj", "{B7A9A4B4-473E-4143-A03C-806F88F94FEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "midis.muchik.market.api", "midis.muchik.market.api\midis.muchik.market.api.csproj", "{B7A9A4B4-473E-4143-A03C-806F88F94FEE}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6E586DFE-A673-44F7-A29C-3902E53A5BDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{B7A9A4B4-473E-4143-A03C-806F88F94FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A9A4B4-473E-4143-A03C-806F88F94FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7A9A4B4-473E-4143-A03C-806F88F94FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E586DFE-A673-44F7-A29C-3902E53A5BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E586DFE-A673-44F7-A29C-3902E53A5BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E586DFE-A673-44F7-A29C-3902E53A5BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E586DFE-A673-44F7-A29C-3902E53A5BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

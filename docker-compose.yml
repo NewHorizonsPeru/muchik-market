@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  midis.muchik.market.api:
+    image: ${DOCKER_REGISTRY-}midismuchikmarketapi
+    build:
+      context: .
+      dockerfile: midis.muchik.market.api/Dockerfile
+networks:
+  default:
+    external:
+      name: muchik-network
+   
+  

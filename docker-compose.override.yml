@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+  midis.muchik.market.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9201:80"
