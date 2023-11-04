@@ -18,17 +18,23 @@ builder.Services.AddSwaggerGen();
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(EntityToDtoProfile));
 
-//DBContext SQL Server
-builder.Services.AddDbContext<MuchikContext>(opt =>
+//CommonContext SQL Server
+builder.Services.AddDbContext<CommonContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("MuchikConnection"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("MuchikMsSql"));
+});
+
+//SecurityContext MySQL
+builder.Services.AddDbContext<SecurityContext>(opt =>
+{
+    opt.UseMySQL(builder.Configuration.GetConnectionString("MuchikMySql")!);
 });
 
 builder.Services.AddTransient<ICommonService, CommonService>();
 builder.Services.AddTransient<IBrandRepository, BrandRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<MuchikContext>();
+builder.Services.AddTransient<CommonContext>();
 
 var app = builder.Build();
 

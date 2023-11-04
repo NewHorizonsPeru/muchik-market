@@ -26,6 +26,10 @@ namespace midis.muchik.market.application.mappings
                 .ForMember(d => d.ProductScore, s => s.MapFrom(e => e.Score))
                 .ForMember(d => d.ProductPrice, s => s.MapFrom(e => e.Price))
                 .ForMember(d => d.ProductStock, s => s.MapFrom(e => e.Stock));
+
+            CreateMap<Role, RoleDto>();
+
+            CreateMap<User, UserDto>();
         }
     }
 }

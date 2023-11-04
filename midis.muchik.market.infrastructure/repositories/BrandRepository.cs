@@ -6,6 +6,6 @@ namespace midis.muchik.market.infrastructure.repositories
 {
     public class BrandRepository : GenericRepository<Brand>, IBrandRepository
     {
-        public BrandRepository(MuchikContext context) : base(context) { }
+        public BrandRepository(CommonContext context) : base(context) { }
     }
 }

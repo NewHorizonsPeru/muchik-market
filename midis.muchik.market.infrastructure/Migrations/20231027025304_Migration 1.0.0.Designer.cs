@@ -11,7 +11,7 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.Migrations
 {
-    [DbContext(typeof(MuchikContext))]
+    [DbContext(typeof(CommonContext))]
     [Migration("20231027025304_Migration 1.0.0")]
     partial class Migration100
     {

@@ -7,7 +7,7 @@ namespace midis.muchik.market.infrastructure.repositories
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(MuchikContext context) : base(context) { }
+        public ProductRepository(CommonContext context) : base(context) { }
 
         public IEnumerable<Product> GetProducts() {
 

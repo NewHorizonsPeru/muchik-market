@@ -7,9 +7,9 @@ namespace midis.muchik.market.infrastructure.repositories
 {
     public class GenericRepository<T> : IGenericRepository<T>  where T : class
     {
-        protected readonly MuchikContext _context;
+        protected readonly CommonContext _context;
 
-        public GenericRepository(MuchikContext context)
+        public GenericRepository(CommonContext context)
         {
             _context = context;
         }

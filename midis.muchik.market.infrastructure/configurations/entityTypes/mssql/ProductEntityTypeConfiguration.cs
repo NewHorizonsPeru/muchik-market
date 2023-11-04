@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using midis.muchik.market.domain.entities;
 
-namespace midis.muchik.market.infrastructure.configurations.entityTypes
+namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
 {
     public class ProductEntityTypeConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("product");
-            
+
             builder.Property(e => e.Id)
                 .HasColumnType("varchar(250)")
                 .HasColumnName("id");

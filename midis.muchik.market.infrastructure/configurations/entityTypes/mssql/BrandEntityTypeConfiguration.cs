@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using midis.muchik.market.domain.entities;
 
-namespace midis.muchik.market.infrastructure.configurations.entityTypes
+namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
 {
     public class BrandEntityTypeConfiguration : IEntityTypeConfiguration<Brand>
     {

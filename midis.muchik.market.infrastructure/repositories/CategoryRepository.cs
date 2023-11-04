@@ -6,6 +6,6 @@ namespace midis.muchik.market.infrastructure.repositories
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(MuchikContext context) : base(context) { }
+        public CategoryRepository(CommonContext context) : base(context) { }
     }
 }

@@ -10,7 +10,7 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.Migrations
 {
-    [DbContext(typeof(MuchikContext))]
+    [DbContext(typeof(CommonContext))]
     partial class MuchikContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
