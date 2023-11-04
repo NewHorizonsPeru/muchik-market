@@ -30,10 +30,17 @@ builder.Services.AddDbContext<SecurityContext>(opt =>
     opt.UseMySQL(builder.Configuration.GetConnectionString("MuchikMySql")!);
 });
 
+//OmnichannelContext Postgres SQL
+builder.Services.AddDbContext<SecurityContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("MuchikPgMySql")!);
+});
+
 builder.Services.AddTransient<ICommonService, CommonService>();
 builder.Services.AddTransient<IBrandRepository, BrandRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<SecurityContext>();
 builder.Services.AddTransient<CommonContext>();
 
 var app = builder.Build();
