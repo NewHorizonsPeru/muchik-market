@@ -7,13 +7,12 @@ namespace midis.muchik.market.infrastructure.repositories
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(CommonContext context) : base(context) { }
+        public ProductRepository(SecurityContext context) : base(context) { }
 
-        public IEnumerable<Product> GetProducts() {
-
+        /**public IEnumerable<Product> GetProducts() {
             return _context.Products
                 .Include(s => s.Brand)
                 .Include(w => w.Category);
-        }
+        }*/
     }
 }

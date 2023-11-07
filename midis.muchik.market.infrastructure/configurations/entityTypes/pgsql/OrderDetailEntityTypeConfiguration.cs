@@ -12,6 +12,14 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.pgsql
 
             builder.HasKey(e => new { e.OrderId, e.ProductId });
 
+            builder.Property(e => e.ProductId)
+                .HasColumnType("varchar(250)")
+                .HasColumnName("product_id");
+
+            builder.Property(e => e.OrderId)
+                .HasColumnType("varchar(250)")
+                .HasColumnName("order_id");
+
             builder.Property(e => e.Quantity)
                 .HasColumnType("smallint")
                 .HasColumnName("quantity");

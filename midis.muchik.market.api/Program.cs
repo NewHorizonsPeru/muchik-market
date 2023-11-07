@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using midis.muchik.market.application.interfaces;
 using midis.muchik.market.application.mappings;
 using midis.muchik.market.application.services;
+using midis.muchik.market.crosscutting.interfaces;
+using midis.muchik.market.crosscutting.jwt;
 using midis.muchik.market.domain.interfaces;
 using midis.muchik.market.infrastructure.context;
 using midis.muchik.market.infrastructure.repositories;
@@ -33,13 +35,24 @@ builder.Services.AddDbContext<SecurityContext>(opt =>
 //OmnichannelContext Postgres SQL
 builder.Services.AddDbContext<OmnichannelContext>(opt =>
 {
-    opt.UseNpgsql(builder.Configuration.GetConnectionString("MuchikPgMySql")!);
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("MuchikPgSql")!);
 });
 
+//Cross-Cutting
+builder.Services.AddTransient<IJwtManger, JwtManager>();
+
+// Services
 builder.Services.AddTransient<ICommonService, CommonService>();
+builder.Services.AddTransient<ISecurityService, SecurityService>();
+
+//Repositories
 builder.Services.AddTransient<IBrandRepository, BrandRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+//Contexts
 builder.Services.AddTransient<SecurityContext>();
 builder.Services.AddTransient<CommonContext>();
 builder.Services.AddTransient<OmnichannelContext>();

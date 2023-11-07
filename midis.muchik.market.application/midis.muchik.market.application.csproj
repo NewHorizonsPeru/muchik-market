@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\midis.muchik.market.cross-cutting\midis.muchik.market.crosscutting.csproj" />
     <ProjectReference Include="..\midis.muchik.market.domain\midis.muchik.market.domain.csproj" />
   </ItemGroup>
 

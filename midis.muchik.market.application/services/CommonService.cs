@@ -40,7 +40,7 @@ namespace midis.muchik.market.application.services
 
         public IEnumerable<ProductDto> GetProducts()
         {
-            var productsEntity = _productRepository.GetProducts();
+            var productsEntity = _productRepository.List();
             return _mapper.Map<IEnumerable<ProductDto>>(productsEntity);
         }
     }
