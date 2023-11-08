@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using midis.muchik.market.application.dto;
 using midis.muchik.market.application.dto.security;
 using midis.muchik.market.application.interfaces;
 using midis.muchik.market.crosscutting.bcrypt;
+using midis.muchik.market.crosscutting.exceptions;
 using midis.muchik.market.crosscutting.interfaces;
+using midis.muchik.market.crosscutting.models;
 using midis.muchik.market.domain.entities;
 using midis.muchik.market.domain.interfaces;
 
@@ -21,16 +24,30 @@ namespace midis.muchik.market.application.services
             _userRepository = userRepository;
         }
 
-        public void SignUp(SignUpRequestDto signUpRequestDto)
+        public GenericResponse<UserDto> SignIn(SignInRequestDto signInRequestDto)
         {
-            /**
-             * VALIDAR SI EL USUARIO EXISTE
-            **/
-            
+            var userExists = _userRepository.Find(w => w.Email.Equals(signInRequestDto.Email)).FirstOrDefault();
+            if (userExists == null || !BcryptManager.Verify(signInRequestDto.Password, userExists.Password)) { 
+                throw new MuchikException("Usuario y/o contraseña incorrecto, intente nuevamente."); 
+            }
+            var userDto = _mapper.Map<UserDto>(userExists);
+            return new GenericResponse<UserDto>(userDto);
+        }
+
+        public GenericResponse<UserDto> SignUp(SignUpRequestDto signUpRequestDto)
+        {
+            var userExists = _userRepository.Find(w => w.Email.Equals(signUpRequestDto.Email)).FirstOrDefault();
+            if(userExists != null) { throw new MuchikException("El correo ingresado ya existe, intente con otro."); }
+
             var userEntity = _mapper.Map<User>(signUpRequestDto);
             userEntity.Password = BcryptManager.Hash(userEntity.Password);
             _userRepository.Add(userEntity);
+            
             _userRepository.Save();
+
+            var userDto = _mapper.Map<UserDto>(userEntity);
+
+            return new GenericResponse<UserDto>(userDto);
         }
     }
 }

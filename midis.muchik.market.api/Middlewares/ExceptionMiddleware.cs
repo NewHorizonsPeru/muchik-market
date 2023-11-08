@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using midis.muchik.market.crosscutting.exceptions;
 using midis.muchik.market.crosscutting.models;
-using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
 
@@ -32,11 +31,11 @@ namespace midis.muchik.market.api.Middlewares
             httpContext.Response.ContentType = "application/json";
             
             var genericResponse = new GenericResponse<object>("");
-
+            
             switch(exception)
             {
                 case MuchikException ex:
-                    httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+                    httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     genericResponse.Message = ex.Message;
                     break;
                 case SqlException ex:
@@ -49,7 +48,7 @@ namespace midis.muchik.market.api.Middlewares
                     break;
             }
 
-            var genericResponseJson = JsonSerializer.Serialize(genericResponse);
+            var genericResponseJson = JsonSerializer.Serialize(genericResponse, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase});
             await httpContext.Response.WriteAsync(genericResponseJson);
 
         }

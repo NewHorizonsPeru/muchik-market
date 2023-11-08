@@ -15,11 +15,16 @@ namespace midis.muchik.market.api.Controllers
             _securityService = securityService;
         }
 
+        [HttpPost("signIn")]
+        public IActionResult SignIn([FromBody] SignInRequestDto signInRequestDto)
+        {
+            return Ok(_securityService.SignIn(signInRequestDto));
+        }
+
         [HttpPost("signUp")]
         public IActionResult SignUp([FromBody] SignUpRequestDto signUpRequestDto)
         {
-            _securityService.SignUp(signUpRequestDto);
-            return Ok();
+            return Ok(_securityService.SignUp(signUpRequestDto));
         }
     }
 }
