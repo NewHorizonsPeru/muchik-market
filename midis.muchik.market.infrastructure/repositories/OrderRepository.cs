@@ -4,8 +4,8 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class OrderRepository : GenericRepository<Order>, IOrderRepository
+    public class OrderRepository : GenericRepository<OmnichannelContext, Order>, IOrderRepository
     {
-        public OrderRepository(SecurityContext context) : base(context) { }
+        public OrderRepository(OmnichannelContext context) : base(context) { }
     }
 }

@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T>  where T : class
+    public class GenericRepository<TContext ,T> : IGenericRepository<T>  where T : class where TContext : DbContext
     {
-        protected readonly SecurityContext _context;
+        protected TContext _context;
 
-        public GenericRepository(SecurityContext context)
+        public GenericRepository(TContext context)
         {
             _context = context;
         }

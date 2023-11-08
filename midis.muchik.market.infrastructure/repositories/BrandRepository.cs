@@ -4,8 +4,8 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class BrandRepository : GenericRepository<Brand>, IBrandRepository
+    public class BrandRepository : GenericRepository<CommonContext, Brand>, IBrandRepository
     {
-        public BrandRepository(SecurityContext context) : base(context) { }
+        public BrandRepository(CommonContext context) : base(context) { }
     }
 }

@@ -5,9 +5,9 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class ProductRepository : GenericRepository<Product>, IProductRepository
+    public class ProductRepository : GenericRepository<CommonContext, Product>, IProductRepository
     {
-        public ProductRepository(SecurityContext context) : base(context) { }
+        public ProductRepository(CommonContext context) : base(context) { }
 
         /**public IEnumerable<Product> GetProducts() {
             return _context.Products

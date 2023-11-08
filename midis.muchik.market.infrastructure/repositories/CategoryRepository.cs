@@ -4,8 +4,8 @@ using midis.muchik.market.infrastructure.context;
 
 namespace midis.muchik.market.infrastructure.repositories
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class CategoryRepository : GenericRepository<CommonContext, Category>, ICategoryRepository
     {
-        public CategoryRepository(SecurityContext context) : base(context) { }
+        public CategoryRepository(CommonContext context) : base(context) { }
     }
 }
