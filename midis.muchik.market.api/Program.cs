@@ -11,6 +11,8 @@ builder.Services.AddMappgins();
 builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddDependencyContainer();
 
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -20,6 +22,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseMiddleware<AuthorizationMiddleware>();
 
 app.UseAuthorization();
 

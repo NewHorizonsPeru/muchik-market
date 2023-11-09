@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using midis.muchik.market.application.interfaces;
 using midis.muchik.market.application.mappings;
 using midis.muchik.market.application.services;
@@ -7,6 +9,7 @@ using midis.muchik.market.crosscutting.jwt;
 using midis.muchik.market.domain.interfaces;
 using midis.muchik.market.infrastructure.context;
 using midis.muchik.market.infrastructure.repositories;
+using System.Text;
 
 namespace midis.muchik.market.api.IoC
 {
@@ -58,6 +61,27 @@ namespace midis.muchik.market.api.IoC
             services.AddTransient<SecurityContext>();
             services.AddTransient<CommonContext>();
             services.AddTransient<OmnichannelContext>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.
+                AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = configuration.GetValue<string>("JwtConfig:Issuer"),
+                        ValidAudience = configuration.GetValue<string>("JwtConfig:Audience"),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtConfig:SecretKet")!))
+                    };
+                });
 
             return services;
         }

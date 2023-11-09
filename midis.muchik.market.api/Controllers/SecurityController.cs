@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using midis.muchik.market.application.dto.security;
 using midis.muchik.market.application.interfaces;
 
@@ -6,6 +7,7 @@ namespace midis.muchik.market.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class SecurityController : ControllerBase
     {
         private readonly ISecurityService _securityService;

@@ -26,11 +26,12 @@ namespace midis.muchik.market.application.services
 
         public GenericResponse<UserDto> SignIn(SignInRequestDto signInRequestDto)
         {
-            var userExists = _userRepository.Find(w => w.Email.Equals(signInRequestDto.Email)).FirstOrDefault();
+            var userExists = _userRepository.GetUserByEmail(signInRequestDto.Email);
             if (userExists == null || !BcryptManager.Verify(signInRequestDto.Password, userExists.Password)) { 
                 throw new MuchikException("Usuario y/o contraseña incorrecto, intente nuevamente."); 
             }
             var userDto = _mapper.Map<UserDto>(userExists);
+            userDto.Token = _jwtManger.GenerateToken(userDto.Id, userDto.Email, userDto.Role.Id);
             return new GenericResponse<UserDto>(userDto);
         }
 
