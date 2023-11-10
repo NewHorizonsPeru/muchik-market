@@ -11,13 +11,14 @@ namespace midis.muchik.market.infrastructure.context
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new BrandEntityTypeConfiguration());
-
+            modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
             OnModelCreatingPartial(modelBuilder);
         }
 

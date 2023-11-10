@@ -9,10 +9,10 @@ namespace midis.muchik.market.infrastructure.repositories
     {
         public ProductRepository(CommonContext context) : base(context) { }
 
-        /**public IEnumerable<Product> GetProducts() {
+        public IEnumerable<Product> GetProducts() {
             return _context.Products
                 .Include(s => s.Brand)
                 .Include(w => w.Category);
-        }*/
+        }
     }
 }

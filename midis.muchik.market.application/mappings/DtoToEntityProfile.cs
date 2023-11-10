@@ -10,6 +10,7 @@ namespace midis.muchik.market.application.mappings
         public DtoToEntityProfile() 
         {
             CreateMap<SignUpRequestDto, User>();
+            CreateMap<CustomerDto, Customer>();
         }
     }
 }

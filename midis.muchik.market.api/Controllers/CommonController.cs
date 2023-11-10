@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using midis.muchik.market.application.dto;
 using midis.muchik.market.application.interfaces;
+using midis.muchik.market.crosscutting.models;
 
 namespace midis.muchik.market.api.Controllers
 {
@@ -32,6 +34,12 @@ namespace midis.muchik.market.api.Controllers
         public IActionResult GetProducts()
         {
             return Ok(_commonService.GetProducts());
+        }
+
+        [HttpPost("addCustomer")]
+        public GenericResponse<CustomerDto> AddCustomer([FromBody] CustomerDto customerDto)
+        {
+            return _commonService.AddCustomer(customerDto);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace midis.muchik.market.api.IoC
     {
         public static IServiceCollection AddMappgins(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(EntityToDtoProfile));
+            services.AddAutoMapper(typeof(EntityToDtoProfile), typeof(DtoToEntityProfile));
             return services;
         }
 
@@ -54,7 +54,7 @@ namespace midis.muchik.market.api.IoC
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
 
             //Contexts
