@@ -110,6 +110,54 @@ namespace midis.muchik.market.application.services
         #endregion
 
         #region Categories
+        public GenericResponse<CategoryDto> AddCategory(AddCategoryDto addCategoryDto)
+        {
+            var categoryExists = _categoryRepository.List(w => w.Name.Equals(addCategoryDto.Name)).FirstOrDefault();
+            if (categoryExists != null) { throw new MuchikException("La categoría ingresada ya se encuentra registrada."); }
+
+            var categoryEntity = _mapper.Map<Category>(addCategoryDto);
+            _categoryRepository.Add(categoryEntity);
+            var successSave = _categoryRepository.Save();
+
+            if (!successSave) { throw new MuchikException("Ocurrió un error registrando la categoría, intenta nuevamente."); }
+
+            return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryEntity));
+        }
+
+        public GenericResponse<CategoryDto> UpdateCategory(string categoryId, AddCategoryDto addCategoryDto)
+        {
+            var categoryExists = _categoryRepository.GetById(categoryId);
+            if (categoryExists == null) { throw new MuchikException("La categoría ingresada no se encuentra registrada."); }
+
+            _mapper.Map(addCategoryDto, categoryExists);
+            var successSave = _categoryRepository.Save();
+
+            if (!successSave) { throw new MuchikException("Ocurrió un error registrando la categoría, intenta nuevamente."); }
+
+            return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
+        }
+
+        public GenericResponse<CategoryDto> RemoveCategory(string categoryId)
+        {
+            var categoryExists = _categoryRepository.GetById(categoryId);
+            if (categoryExists == null) { throw new MuchikException("La categoría ingresada no se encuentra registrada."); }
+
+            categoryExists.IsActive = false;
+
+            var successSave = _categoryRepository.Save();
+            if (!successSave) { throw new MuchikException("Ocurrió un error eliminando la categoría, intenta nuevamente."); }
+
+            return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
+        }
+
+        public GenericResponse<CategoryDto> GetCategoryById(string categoryId)
+        {
+            var categoryExists = _categoryRepository.GetById(categoryId);
+            if (categoryExists == null) { throw new MuchikException("La categoría ingresada no se encuentra registrada."); }
+
+            return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
+        }
+
         public GenericResponse<IEnumerable<CategoryDto>> GetCategories()
         {
             var categoriesEntity = _categoryRepository.List();

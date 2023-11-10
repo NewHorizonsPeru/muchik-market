@@ -13,6 +13,7 @@ namespace midis.muchik.market.application.mappings
             CreateMap<SignUpRequestDto, User>();
             CreateMap<CustomerDto, Customer>();
             CreateMap<AddBrandDto, Brand>();
+            CreateMap<AddCategoryDto, Category>();
         }
     }
 }

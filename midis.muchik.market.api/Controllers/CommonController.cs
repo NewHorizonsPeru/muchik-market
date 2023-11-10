@@ -47,6 +47,26 @@ namespace midis.muchik.market.api.Controllers
         #endregion
 
         #region Categories
+        [HttpPost("addCategory")]
+        public IActionResult AddCategory([FromBody] AddCategoryDto addCategoryDto)
+        {
+            return Ok(_commonService.AddCategory(addCategoryDto));
+        }
+        [HttpPut("updateCategory")]
+        public IActionResult UpdateCategory([FromQuery] string CategoryId, [FromBody] AddCategoryDto updateCategoryDto)
+        {
+            return Ok(_commonService.UpdateCategory(CategoryId, updateCategoryDto));
+        }
+        [HttpDelete("removeCategory")]
+        public IActionResult RemoveCategory([FromQuery] string CategoryId)
+        {
+            return Ok(_commonService.RemoveCategory(CategoryId));
+        }
+        [HttpGet("getCategoryById")]
+        public IActionResult GetCategoryById(string CategoryId)
+        {
+            return Ok(_commonService.GetCategoryById(CategoryId));
+        }
         [HttpGet("getCategories")]
         public IActionResult GetCategories()
         {
