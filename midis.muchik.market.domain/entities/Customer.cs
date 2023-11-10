@@ -10,5 +10,6 @@
         public string UserId { get; set; } = null!;
         public DateTime BornedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public bool IsActive { get; set; }
     }
 }

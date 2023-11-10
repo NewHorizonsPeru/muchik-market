@@ -12,7 +12,7 @@
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string CategoryId { get; set; } = null!;
         public string BrandId { get; set; } = null!;
-
+        public bool IsActive { get; set; }
         public virtual Brand Brand { get; set; } = null!;
         public virtual Category Category { get; set; } = null!;
     }

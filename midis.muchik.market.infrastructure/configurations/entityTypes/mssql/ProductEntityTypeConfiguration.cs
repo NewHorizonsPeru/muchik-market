@@ -46,6 +46,10 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
                .HasColumnType("datetime")
                .HasColumnName("created_at");
 
+            builder.Property(e => e.IsActive)
+               .HasColumnType("bit")
+               .HasColumnName("is_active");
+
             builder.HasOne(d => d.Brand)
                 .WithMany(p => p.Products)
                 .HasForeignKey(d => d.BrandId)

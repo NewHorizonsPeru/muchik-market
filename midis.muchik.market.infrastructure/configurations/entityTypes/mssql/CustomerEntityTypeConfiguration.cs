@@ -42,7 +42,11 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
 
             builder.Property(e => e.CreatedAt)
                .HasColumnType("datetime")
-               .HasColumnName("created_at");           
+               .HasColumnName("created_at");
+
+            builder.Property(e => e.IsActive)
+               .HasColumnType("bit")
+               .HasColumnName("is_active");
         }
     }
 }
