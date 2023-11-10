@@ -1,8 +1,7 @@
-﻿namespace midis.muchik.market.application.dto
+﻿namespace midis.muchik.market.application.dto.common
 {
-    public class BrandDto
+    public class AddBrandDto
     {
-        public string Id { get; set; } = null!;
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
     }

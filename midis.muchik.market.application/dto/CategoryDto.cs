@@ -2,8 +2,8 @@
 {
     public class CategoryDto
     {
-        public string CategoryId { get; set; } = null!;
-        public string CategoryName { get; set; } = null!;
-        public string CategoryDescription { get; set; } = null!;
+        public string Id { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
     }
 }

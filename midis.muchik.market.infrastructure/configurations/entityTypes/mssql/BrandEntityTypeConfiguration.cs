@@ -27,6 +27,10 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
             builder.Property(e => e.Description)
                 .HasColumnType("varchar(1000)")
                 .HasColumnName("description");
+
+            builder.Property(e => e.IsActive)
+                .HasColumnType("bit")
+                .HasColumnName("is_active");
         }
     }
 }

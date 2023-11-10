@@ -10,7 +10,8 @@
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public bool IsActive { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
