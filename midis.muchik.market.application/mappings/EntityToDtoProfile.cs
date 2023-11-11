@@ -14,6 +14,8 @@ namespace midis.muchik.market.application.mappings
             CreateMap<Role, RoleDto>();
             CreateMap<User, UserDto>();
             CreateMap<Customer, CustomerDto>();
+            CreateMap<OrderDetail, OrderDetailDto>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }

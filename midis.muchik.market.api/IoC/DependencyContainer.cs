@@ -49,6 +49,7 @@ namespace midis.muchik.market.api.IoC
             // Services
             services.AddTransient<ICommonService, CommonService>();
             services.AddTransient<ISecurityService, SecurityService>();
+            services.AddTransient<IOmnichannelService, OmnichannelService>();
 
             //Repositories
             services.AddTransient<IBrandRepository, BrandRepository>();
@@ -56,6 +57,7 @@ namespace midis.muchik.market.api.IoC
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             //Contexts
             services.AddTransient<SecurityContext>();

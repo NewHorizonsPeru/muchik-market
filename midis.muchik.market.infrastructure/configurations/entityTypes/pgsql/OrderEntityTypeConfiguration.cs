@@ -33,7 +33,6 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.pgsql
                 .HasColumnName("total");
 
             builder.Property(e => e.CreatedAt)
-               .HasColumnType("timestamp")
                .HasColumnName("created_at");
 
             builder.HasMany(e => e.OrderDetail);
