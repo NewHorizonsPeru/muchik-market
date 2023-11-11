@@ -36,6 +36,10 @@ namespace midis.muchik.market.infrastructure.configurations.entityTypes.mssql
                 .HasColumnType("varchar(1000)")
                 .HasColumnName("description");
 
+            builder.Property(e => e.ImageUrl)
+                .HasColumnType("varchar(250)")
+                .HasColumnName("image_url");
+
             builder.Property(e => e.Score)
                 .HasColumnName("score");
 

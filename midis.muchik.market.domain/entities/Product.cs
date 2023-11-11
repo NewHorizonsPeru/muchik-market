@@ -7,12 +7,13 @@
         public string Sku { get; set; } = null!;
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
         public int Score { get; set; }
         public int Stock { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string CategoryId { get; set; } = null!;
         public string BrandId { get; set; } = null!;
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         public virtual Brand Brand { get; set; } = null!;
         public virtual Category Category { get; set; } = null!;
     }

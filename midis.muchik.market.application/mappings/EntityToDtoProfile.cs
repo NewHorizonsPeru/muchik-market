@@ -9,15 +9,10 @@ namespace midis.muchik.market.application.mappings
         public EntityToDtoProfile() 
         {
             CreateMap<Brand, BrandDto>();
-
             CreateMap<Category, CategoryDto>();
-
             CreateMap<Product, ProductDto>();
-
             CreateMap<Role, RoleDto>();
-
             CreateMap<User, UserDto>();
-
             CreateMap<Customer, CustomerDto>();
         }
     }

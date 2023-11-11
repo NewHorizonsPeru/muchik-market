@@ -75,6 +75,26 @@ namespace midis.muchik.market.api.Controllers
         #endregion
 
         #region Products
+        [HttpPost("addProduct")]
+        public IActionResult AddProduct([FromBody] AddProductDto addProductDto)
+        {
+            return Ok(_commonService.AddProduct(addProductDto));
+        }
+        [HttpPut("updateProduct")]
+        public IActionResult UpdateProduct([FromQuery] string productId, [FromBody] AddProductDto updateProductDto)
+        {
+            return Ok(_commonService.UpdateProduct(productId, updateProductDto));
+        }
+        [HttpDelete("removeProduct")]
+        public IActionResult RemoveProduct([FromQuery] string productId)
+        {
+            return Ok(_commonService.RemoveProduct(productId));
+        }
+        [HttpGet("getProductById")]
+        public IActionResult GetProductById(string productId)
+        {
+            return Ok(_commonService.GetProductById(productId));
+        }
         [HttpGet("getProducts")]
         public IActionResult GetProducts()
         {
@@ -87,6 +107,26 @@ namespace midis.muchik.market.api.Controllers
         public IActionResult AddCustomer([FromBody] CustomerDto customerDto)
         {
             return Ok(_commonService.AddCustomer(customerDto));
+        }
+        [HttpPut("updateCustomer")]
+        public IActionResult UpdateCustomer([FromQuery] string customerId, [FromBody] AddCustomerDto updateCustomerDto)
+        {
+            return Ok(_commonService.UpdateCustomer(customerId, updateCustomerDto));
+        }
+        [HttpDelete("removeCustomer")]
+        public IActionResult RemoveCustomer([FromQuery] string customerId)
+        {
+            return Ok(_commonService.RemoveCustomer(customerId));
+        }
+        [HttpGet("getCustomerById")]
+        public IActionResult GetCustomerById(string customerId)
+        {
+            return Ok(_commonService.GetCustomerById(customerId));
+        }
+        [HttpGet("getCustomers")]
+        public IActionResult GetCustomers()
+        {
+            return Ok(_commonService.GetCustomers());
         }
         #endregion
     }

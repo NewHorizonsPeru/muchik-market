@@ -49,6 +49,43 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<CustomerDto>(_mapper.Map<CustomerDto>(customerEntity));
         }
+        public GenericResponse<CustomerDto> UpdateCustomer(string customerId, AddCustomerDto addCustomerDto)
+        {
+            var customerExists = _customerRepository.GetById(customerId);
+            if (customerExists == null) { throw new MuchikException("El cliente ingresado no se encuentra registrado."); }
+
+            _mapper.Map(addCustomerDto, customerExists);
+            var successSave = _customerRepository.Save();
+
+            if (!successSave) { throw new MuchikException("Ocurrió un error registrando el cliente, intenta nuevamente."); }
+
+            return new GenericResponse<CustomerDto>(_mapper.Map<CustomerDto>(customerExists));
+
+        }
+        public GenericResponse<CustomerDto> RemoveCustomer(string customerId)
+        {
+            var customerExists = _customerRepository.GetById(customerId);
+            if (customerExists == null) { throw new MuchikException("El cliente ingresado no se encuentra registrado."); }
+
+            customerExists.IsActive = false;
+
+            var successSave = _customerRepository.Save();
+            if (!successSave) { throw new MuchikException("Ocurrió un error eliminando el cliente, intenta nuevamente."); }
+
+            return new GenericResponse<CustomerDto>(_mapper.Map<CustomerDto>(customerExists));
+        }
+        public GenericResponse<CustomerDto> GetCustomerById(string customerId)
+        {
+            var customerExists = _customerRepository.GetById(customerId);
+            if (customerExists == null) { throw new MuchikException("El cliente ingresado no se encuentra registrada."); }
+
+            return new GenericResponse<CustomerDto>(_mapper.Map<CustomerDto>(customerExists));
+        }
+        public GenericResponse<IEnumerable<CustomerDto>> GetCustomers()
+        {
+            var customersEntity = _customerRepository.List(w => w.IsActive);
+            return new GenericResponse<IEnumerable<CustomerDto>>(_mapper.Map<IEnumerable<CustomerDto>>(customersEntity));
+        }
         #endregion
 
         #region Brands
@@ -66,7 +103,6 @@ namespace midis.muchik.market.application.services
             return new GenericResponse<BrandDto>(_mapper.Map<BrandDto>(brandEntity));
 
         }
-
         public GenericResponse<BrandDto> UpdateBrand(string brandId, AddBrandDto addBrandDto)
         {
             var brandExists = _brandRepository.GetById(brandId);
@@ -80,7 +116,6 @@ namespace midis.muchik.market.application.services
             return new GenericResponse<BrandDto>(_mapper.Map<BrandDto>(brandExists));
 
         }
-
         public GenericResponse<BrandDto> RemoveBrand(string brandId)
         {
             var brandExists = _brandRepository.GetById(brandId);
@@ -93,7 +128,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<BrandDto>(_mapper.Map<BrandDto>(brandExists));
         }
-
         public GenericResponse<BrandDto> GetBrandById(string brandId)
         {
             var brandExists = _brandRepository.GetById(brandId);
@@ -101,7 +135,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<BrandDto>(_mapper.Map<BrandDto>(brandExists));
         }
-
         public GenericResponse<IEnumerable<BrandDto>> GetBrands()
         {
             var brandsEntity = _brandRepository.List(w => w.IsActive);
@@ -123,7 +156,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryEntity));
         }
-
         public GenericResponse<CategoryDto> UpdateCategory(string categoryId, AddCategoryDto addCategoryDto)
         {
             var categoryExists = _categoryRepository.GetById(categoryId);
@@ -136,7 +168,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
         }
-
         public GenericResponse<CategoryDto> RemoveCategory(string categoryId)
         {
             var categoryExists = _categoryRepository.GetById(categoryId);
@@ -149,7 +180,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
         }
-
         public GenericResponse<CategoryDto> GetCategoryById(string categoryId)
         {
             var categoryExists = _categoryRepository.GetById(categoryId);
@@ -157,7 +187,6 @@ namespace midis.muchik.market.application.services
 
             return new GenericResponse<CategoryDto>(_mapper.Map<CategoryDto>(categoryExists));
         }
-
         public GenericResponse<IEnumerable<CategoryDto>> GetCategories()
         {
             var categoriesEntity = _categoryRepository.List();
@@ -166,6 +195,50 @@ namespace midis.muchik.market.application.services
         #endregion
 
         #region Products
+        public GenericResponse<ProductDto> AddProduct(AddProductDto addProductDto)
+        {
+            var productExists = _productRepository.List(w => w.Name.Equals(addProductDto.Name)).FirstOrDefault();
+            if (productExists != null) { throw new MuchikException("El producto ingresado ya se encuentra registrado."); }
+
+            var productEntity = _mapper.Map<Product>(addProductDto);
+            _productRepository.Add(productEntity);
+            var successSave = _productRepository.Save();
+
+            if (!successSave) { throw new MuchikException("Ocurrió un error registrando el producto, intenta nuevamente."); }
+
+            return new GenericResponse<ProductDto>(_mapper.Map<ProductDto>(productEntity));
+        }
+        public GenericResponse<ProductDto> UpdateProduct(string productId, AddProductDto addProductDto)
+        {
+            var productExists = _productRepository.GetById(productId);
+            if (productExists == null) { throw new MuchikException("El producto ingresado no se encuentra registrado."); }
+
+            _mapper.Map(addProductDto, productExists);
+            var successSave = _productRepository.Save();
+
+            if (!successSave) { throw new MuchikException("Ocurrió un error actualizando el producto, intenta nuevamente."); }
+
+            return new GenericResponse<ProductDto>(_mapper.Map<ProductDto>(productExists));
+        }
+        public GenericResponse<ProductDto> RemoveProduct(string productId)
+        {
+            var productExists = _productRepository.GetById(productId);
+            if (productExists == null) { throw new MuchikException("El producto ingresado no se encuentra registrado."); }
+
+            productExists.IsActive = false;
+
+            var successSave = _productRepository.Save();
+            if (!successSave) { throw new MuchikException("Ocurrió un error eliminando el producto, intenta nuevamente."); }
+
+            return new GenericResponse<ProductDto>(_mapper.Map<ProductDto>(productExists));
+        }
+        public GenericResponse<ProductDto> GetProductById(string productId)
+        {
+            var productExists = _productRepository.GetById(productId);
+            if (productExists == null) { throw new MuchikException("El producto ingresado no se encuentra registrado."); }
+
+            return new GenericResponse<ProductDto>(_mapper.Map<ProductDto>(productExists));
+        }
         public GenericResponse<IEnumerable<ProductDto>> GetProducts()
         {
             var productsEntity = _productRepository.List();

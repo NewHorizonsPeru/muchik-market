@@ -14,6 +14,8 @@ namespace midis.muchik.market.application.mappings
             CreateMap<CustomerDto, Customer>();
             CreateMap<AddBrandDto, Brand>();
             CreateMap<AddCategoryDto, Category>();
+            CreateMap<AddCustomerDto, Customer>();
+            CreateMap<AddProductDto, Product>();
         }
     }
 }

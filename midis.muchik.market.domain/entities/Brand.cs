@@ -11,7 +11,7 @@
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<Product> Products { get; set; }
     }

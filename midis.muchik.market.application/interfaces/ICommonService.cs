@@ -6,8 +6,6 @@ namespace midis.muchik.market.application.interfaces
 {
     public interface ICommonService
     {
-        GenericResponse<CustomerDto> AddCustomer(CustomerDto customerDto);
-
         GenericResponse<BrandDto> AddBrand(AddBrandDto addBrandDto);
         GenericResponse<BrandDto> UpdateBrand(string brandId, AddBrandDto addBrandDto);
         GenericResponse<BrandDto> RemoveBrand(string brandId);
@@ -20,6 +18,16 @@ namespace midis.muchik.market.application.interfaces
         GenericResponse<CategoryDto> GetCategoryById(string categoryId);
         GenericResponse<IEnumerable<CategoryDto>> GetCategories();
 
+        GenericResponse<ProductDto> AddProduct(AddProductDto addProductDto);
+        GenericResponse<ProductDto> UpdateProduct(string productId, AddProductDto addProductDto);
+        GenericResponse<ProductDto> RemoveProduct(string productId);
+        GenericResponse<ProductDto> GetProductById(string productId);
         GenericResponse<IEnumerable<ProductDto>> GetProducts();
+
+        GenericResponse<CustomerDto> AddCustomer(CustomerDto customerDto);
+        GenericResponse<CustomerDto> UpdateCustomer(string customerId, AddCustomerDto addCustomerDto);
+        GenericResponse<CustomerDto> RemoveCustomer(string customerId);
+        GenericResponse<CustomerDto> GetCustomerById(string customerId);
+        GenericResponse<IEnumerable<CustomerDto>> GetCustomers();
     }
 }
