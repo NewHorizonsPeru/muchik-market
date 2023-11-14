@@ -9,10 +9,39 @@ namespace midis.muchik.market.infrastructure.repositories
     {
         public ProductRepository(CommonContext context) : base(context) { }
 
-        public IEnumerable<Product> GetProducts() {
+        public IEnumerable<Product> GetProducts() 
+        {
             return _context.Products
                 .Include(s => s.Brand)
                 .Include(w => w.Category);
+        }
+
+        public Product GetProductById(string productId)
+        {
+            return _context.Products
+                .Include(s => s.Brand)
+                .Include(w => w.Category)
+                .FirstOrDefault(w => w.Id.Equals(productId))!;
+
+        }
+
+        public IEnumerable<Product> GetProductsByName(string search, string categoryId, string brandId, int skip, int take) 
+        {
+
+            var  resultsFromSearch = _context.Products.Include(s => s.Brand)
+                                                      .Include(w => w.Category)
+                                                      .Where(s => s.Name.ToUpper().Contains(search.ToUpper()));
+
+            if(!string.IsNullOrEmpty(categoryId)) {
+                resultsFromSearch = resultsFromSearch.Where(s => s.CategoryId.Equals(categoryId));
+            }
+
+            if (!string.IsNullOrEmpty(brandId))
+            { 
+                resultsFromSearch = resultsFromSearch.Where(s => s.BrandId.Equals(brandId));
+            }
+
+            return resultsFromSearch.Skip(skip).Take(take);
         }
     }
 }

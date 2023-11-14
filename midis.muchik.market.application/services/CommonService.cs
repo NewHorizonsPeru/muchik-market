@@ -234,14 +234,19 @@ namespace midis.muchik.market.application.services
         }
         public GenericResponse<ProductDto> GetProductById(string productId)
         {
-            var productExists = _productRepository.GetById(productId);
+            var productExists = _productRepository.GetProductById(productId);
             if (productExists == null) { throw new MuchikException("El producto ingresado no se encuentra registrado."); }
 
             return new GenericResponse<ProductDto>(_mapper.Map<ProductDto>(productExists));
         }
         public GenericResponse<IEnumerable<ProductDto>> GetProducts()
         {
-            var productsEntity = _productRepository.List();
+            var productsEntity = _productRepository.GetProducts();
+            return new GenericResponse<IEnumerable<ProductDto>>(_mapper.Map<IEnumerable<ProductDto>>(productsEntity));
+        }
+        public GenericResponse<IEnumerable<ProductDto>> GetProductsByName(string search, string categoryId, string brandId, int skip, int take)
+        {
+            var productsEntity = _productRepository.GetProductsByName(search, categoryId, brandId, skip, take);
             return new GenericResponse<IEnumerable<ProductDto>>(_mapper.Map<IEnumerable<ProductDto>>(productsEntity));
         }
         #endregion

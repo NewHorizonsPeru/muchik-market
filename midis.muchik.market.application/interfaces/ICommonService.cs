@@ -23,6 +23,7 @@ namespace midis.muchik.market.application.interfaces
         GenericResponse<ProductDto> RemoveProduct(string productId);
         GenericResponse<ProductDto> GetProductById(string productId);
         GenericResponse<IEnumerable<ProductDto>> GetProducts();
+        GenericResponse<IEnumerable<ProductDto>> GetProductsByName(string search, string categoryId, string brandId, int skip, int take);
 
         GenericResponse<CustomerDto> AddCustomer(CustomerDto customerDto);
         GenericResponse<CustomerDto> UpdateCustomer(string customerId, AddCustomerDto addCustomerDto);

@@ -100,6 +100,11 @@ namespace midis.muchik.market.api.Controllers
         {
             return Ok(_commonService.GetProducts());
         }
+        [HttpGet("getProductsByName")]
+        public IActionResult GetProductsByName([FromQuery] string search, [FromQuery] int skip, [FromQuery] int take, [FromQuery] string categoryId = "", [FromQuery] string brandId = "")
+        {
+            return Ok(_commonService.GetProductsByName(search, categoryId, brandId, skip, take));
+        }
         #endregion
 
         #region Customers
