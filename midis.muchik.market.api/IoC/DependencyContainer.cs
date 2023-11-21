@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using midis.muchik.market.api.Filters;
 using midis.muchik.market.application.interfaces;
 using midis.muchik.market.application.mappings;
 using midis.muchik.market.application.services;
 using midis.muchik.market.crosscutting.interfaces;
 using midis.muchik.market.crosscutting.jwt;
+using midis.muchik.market.crosscutting.mail;
 using midis.muchik.market.domain.interfaces;
 using midis.muchik.market.infrastructure.context;
 using midis.muchik.market.infrastructure.repositories;
@@ -45,6 +48,7 @@ namespace midis.muchik.market.api.IoC
         {
             //Cross-Cutting
             services.AddTransient<IJwtManger, JwtManager>();
+            services.AddTransient<IMailManager, MailManager>();
 
             // Services
             services.AddTransient<ICommonService, CommonService>();
@@ -81,10 +85,19 @@ namespace midis.muchik.market.api.IoC
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = configuration.GetValue<string>("JwtConfig:Issuer"),
                         ValidAudience = configuration.GetValue<string>("JwtConfig:Audience"),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtConfig:SecretKet")!))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtConfig:SecretKey")!))
                     };
                 });
 
+            return services;
+        }
+
+        public static IServiceCollection AddModelFilter(this IServiceCollection services)
+        {
+            services
+                .AddMvc(opt => { opt.Filters.Add<FluentValidationFilter>(); })
+                .AddFluentValidation(opt => { opt.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()); });
+            
             return services;
         }
     }

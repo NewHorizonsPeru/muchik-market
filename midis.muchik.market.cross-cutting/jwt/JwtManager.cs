@@ -20,7 +20,7 @@ namespace midis.muchik.market.crosscutting.jwt
         {
             var issuer = _configuration.GetValue<string>("JwtConfig:Issuer");
             var audience = _configuration.GetValue<string>("JwtConfig:Audience");
-            var secretKey = _configuration.GetValue<string>("JwtConfig:SecretKet");
+            var secretKey = _configuration.GetValue<string>("JwtConfig:SecretKey");
             var lifetime = _configuration.GetValue<int>("JwtConfig:Lifetime");
 
 
