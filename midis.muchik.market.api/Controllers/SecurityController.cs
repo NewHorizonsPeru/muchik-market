@@ -10,16 +10,19 @@ namespace midis.muchik.market.api.Controllers
     [AllowAnonymous]
     public class SecurityController : ControllerBase
     {
+        private readonly ILogger<SecurityController> _logger;
         private readonly ISecurityService _securityService;
 
-        public SecurityController(ISecurityService securityService)
+        public SecurityController(ILogger<SecurityController> logger, ISecurityService securityService)
         {
+            _logger = logger;
             _securityService = securityService;
         }
 
         [HttpPost("signIn")]
         public IActionResult SignIn([FromBody] SignInRequestDto signInRequestDto)
         {
+            _logger.LogInformation("SignIn Method");
             return Ok(_securityService.SignIn(signInRequestDto));
         }
 
