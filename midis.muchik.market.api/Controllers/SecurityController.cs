@@ -34,5 +34,11 @@ namespace midis.muchik.market.api.Controllers
         {
             return Ok(_securityService.ForgetPassword(forgetPasswordDto));
         }
+
+        [HttpPut("updatePassword")]
+        public IActionResult UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto, [FromQuery] string forgetPasswordToken)
+        {
+            return Ok(_securityService.UpdatePassword(updatePasswordDto, forgetPasswordToken));
+        }
     }
 }

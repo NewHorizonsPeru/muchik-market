@@ -72,5 +72,20 @@ namespace midis.muchik.market.application.services
             _mailManager.SendMail(pathMailingForgetPassword!, userExists.Email, dictionaryMailingValues);
             return new GenericResponse<string>("El correo fue enviando.");
         }
+
+        public GenericResponse<string> UpdatePassword(UpdatePasswordDto updatePasswordDto, string forgetPasswordToken)
+        {
+            var userExists = _userRepository.GetUserByEmail(updatePasswordDto.Email);
+            if (userExists == null || !BcryptManager.Verify(updatePasswordDto.OldPassword, userExists.Password))
+            {
+                throw new MuchikException("Usuario y/o contraseña incorrecto, intente nuevamente.");
+            }
+
+            var userEntity = _userRepository.GetById(userExists.Id);
+            userEntity.Password = BcryptManager.Hash(updatePasswordDto.NewPassword);
+            _userRepository.Save();
+
+            return new GenericResponse<string>("La contraseña fue actualizada correctamente.");
+        }
     }
 }
