@@ -8,5 +8,6 @@ namespace midis.muchik.market.application.interfaces
     {
         GenericResponse<UserDto> SignUp(SignUpRequestDto signUpRequestDto);
         GenericResponse<UserDto> SignIn(SignInRequestDto signInRequestDto);
+        GenericResponse<string> ForgetPassword(ForgetPasswordDto forgetPasswordDto);
     }
 }

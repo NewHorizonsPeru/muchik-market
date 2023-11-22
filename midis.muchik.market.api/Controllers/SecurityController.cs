@@ -28,5 +28,11 @@ namespace midis.muchik.market.api.Controllers
         {
             return Ok(_securityService.SignUp(signUpRequestDto));
         }
+
+        [HttpPost("forgetPassword")]
+        public IActionResult ForgetPassword([FromBody] ForgetPasswordDto forgetPasswordDto)
+        {
+            return Ok(_securityService.ForgetPassword(forgetPasswordDto));
+        }
     }
 }

@@ -63,11 +63,14 @@ namespace midis.muchik.market.application.services
             if (userExists is null) { throw new MuchikException("El correo ingresado no existe, intente con otro."); }
 
             var pathMailingForgetPassword = _configuration.GetValue<string>("SendGridConfig:ForgetPasswordMailing");
+            var urlMailingForgetPassword = _configuration.GetValue<string>("SendGridConfig:ForgetPasswordUrl");
+
             var dictionaryMailingValues = new Dictionary<string, string>();
             dictionaryMailingValues.Add("[FULL_NAME]", userExists.Email);
-            dictionaryMailingValues.Add("[FORGETPASSWORD_URL]", userExists.Email);
+            dictionaryMailingValues.Add("[FORGETPASSWORD_URL]", urlMailingForgetPassword!);
+
             _mailManager.SendMail(pathMailingForgetPassword!, userExists.Email, dictionaryMailingValues);
-            return new GenericResponse<string>("Mail Sent!");
+            return new GenericResponse<string>("El correo fue enviando.");
         }
     }
 }
