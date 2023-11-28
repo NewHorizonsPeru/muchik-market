@@ -8,7 +8,6 @@ namespace midis.muchik.market.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CommonController : ControllerBase
     {
         private readonly ICommonService _commonService;

@@ -25,6 +25,7 @@ builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddDependencyContainer();
 builder.Services.AddModelFilter();
 builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddCorsPolicy();
 
 var app = builder.Build();
 
@@ -39,6 +40,8 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<AuthorizationMiddleware>();
 
 app.UseAuthorization();
+
+app.UseCors("CorsMuchikMarket");
 
 app.MapControllers();
 

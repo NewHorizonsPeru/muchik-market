@@ -100,5 +100,15 @@ namespace midis.muchik.market.api.IoC
             
             return services;
         }
+
+        public static IServiceCollection AddCorsPolicy(this IServiceCollection services)
+        {
+			services.AddCors(opt =>
+			{
+				opt.AddPolicy("CorsMuchikMarket", b => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+			});
+
+            return services;
+		}
     }
 }
