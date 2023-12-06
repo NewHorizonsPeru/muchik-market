@@ -7,6 +7,7 @@ namespace midis.muchik.market.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OmnichannelController : ControllerBase
     {
         private readonly IOmnichannelService _omnichannelService;

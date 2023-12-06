@@ -19,14 +19,16 @@ namespace midis.muchik.market.application.services
         private readonly IJwtManger _jwtManger;
         private readonly IMailManager _mailManager;
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public SecurityService(IConfiguration configuration, IMapper mapper, IJwtManger jwtManger, IMailManager mailManager, IUserRepository userRepository)
+        public SecurityService(IConfiguration configuration, IMapper mapper, IJwtManger jwtManger, IMailManager mailManager, IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _configuration = configuration;
             _mapper = mapper;
             _jwtManger = jwtManger;
             _mailManager = mailManager;
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
 
         public GenericResponse<UserDto> SignIn(SignInRequestDto signInRequestDto)
@@ -86,6 +88,12 @@ namespace midis.muchik.market.application.services
             _userRepository.Save();
 
             return new GenericResponse<string>("La contraseña fue actualizada correctamente.");
+        }
+
+        public GenericResponse<IEnumerable<RoleDto>> GetRoles()
+        {
+            var rolesEntity = _roleRepository.List();         
+            return new GenericResponse<IEnumerable<RoleDto>>(_mapper.Map<IEnumerable<RoleDto>>(rolesEntity));
         }
     }
 }

@@ -27,18 +27,21 @@ namespace midis.muchik.market.infrastructure.repositories
 
         public IEnumerable<Product> GetProductsByName(string search, string categoryId, string brandId, int skip, int take) 
         {
+            var resultsFromSearch = _context.Products.Include(s => s.Brand)
+													  .Include(w => w.Category).ToList();
 
-            var  resultsFromSearch = _context.Products.Include(s => s.Brand)
-                                                      .Include(w => w.Category)
-                                                      .Where(s => s.Name.ToUpper().Contains(search.ToUpper()));
+			if (!string.IsNullOrEmpty(search))
+			{
+				resultsFromSearch = resultsFromSearch.Where(s => s.Name.ToUpper().Contains(search.ToUpper())).ToList();
+			}
 
             if(!string.IsNullOrEmpty(categoryId)) {
-                resultsFromSearch = resultsFromSearch.Where(s => s.CategoryId.Equals(categoryId));
+                resultsFromSearch = resultsFromSearch.Where(s => s.CategoryId.Equals(categoryId)).ToList();
             }
 
             if (!string.IsNullOrEmpty(brandId))
             { 
-                resultsFromSearch = resultsFromSearch.Where(s => s.BrandId.Equals(brandId));
+                resultsFromSearch = resultsFromSearch.Where(s => s.BrandId.Equals(brandId)).ToList();
             }
 
             return resultsFromSearch.Skip(skip).Take(take);

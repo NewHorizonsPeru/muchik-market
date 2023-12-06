@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using midis.muchik.market.application.dto.security;
 using midis.muchik.market.application.interfaces;
+using midis.muchik.market.application.services;
 
 namespace midis.muchik.market.api.Controllers
 {
@@ -42,6 +43,12 @@ namespace midis.muchik.market.api.Controllers
         public IActionResult UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto, [FromQuery] string forgetPasswordToken)
         {
             return Ok(_securityService.UpdatePassword(updatePasswordDto, forgetPasswordToken));
+        }
+
+        [HttpGet("getRoles")]
+        public IActionResult GetRoles()
+        {
+            return Ok(_securityService.GetRoles());
         }
     }
 }

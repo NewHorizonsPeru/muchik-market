@@ -10,5 +10,6 @@ namespace midis.muchik.market.application.interfaces
         GenericResponse<UserDto> SignIn(SignInRequestDto signInRequestDto);
         GenericResponse<string> ForgetPassword(ForgetPasswordDto forgetPasswordDto);
         GenericResponse<string> UpdatePassword(UpdatePasswordDto updatePasswordDto, string forgetPasswordToken);
+        GenericResponse<IEnumerable<RoleDto>> GetRoles();
     }
 }

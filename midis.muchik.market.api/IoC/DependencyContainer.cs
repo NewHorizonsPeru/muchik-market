@@ -61,6 +61,7 @@ namespace midis.muchik.market.api.IoC
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
 
             //Contexts
